@@ -1,0 +1,101 @@
+<div class="homeContainer">
+    <!-- HERO SECTION -->
+    <section class="heroSection">
+        <div class="heroContent">
+            <h1 class="heroTitle">
+                Empowering Education Through Seamless Digital Tools
+            </h1>
+            <p class="heroSubtitle">
+                Simplify classroom administration, streamline term report card generation,
+                and track student performance with real-time accuracy.
+            </p>
+
+            <div class="heroCtaGroup">
+                @if (!isAuthenticated) {
+                <a routerLink="/login" class="primaryBtn">
+                    Login In →
+                </a>
+                <a routerLink="/about" class="secondaryBtn">
+                    Learn More
+                </a>
+                } @else {
+                <a [routerLink]="dashboardUrl" class="primaryBtn">
+                    Go to Dashboard →
+                </a>
+                }
+            </div>
+        </div>
+    </section>
+
+
+    <!-- STATS STRIP -->
+    <section class="statsSection">
+        <div class="statsGrid">
+            <div class="statCard">
+                <span class="statNumber">100%</span>
+                <span class="statLabel">Automated Grading</span>
+            </div>
+            <div class="statCard">
+                <span class="statNumber">Fast</span>
+                <span class="statLabel">Async Performance</span>
+            </div>
+            <div class="statCard">
+                <span class="statNumber">Secure</span>
+                <span class="statLabel">Role-Based Control</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE FEATURES SECTION -->
+    <section class="featuresSection">
+        <div class="sectionHeader">
+            <h2 class="sectionTitle">Everything You Need in One Place</h2>
+            <p class="sectionSubtitle">
+                Built specifically for modern educational institutions, teachers, and students.
+            </p>
+        </div>
+
+        <div class="featuresGrid">
+            <div class="featureCard">
+                <div class="featureIcon">🏫</div>
+                <h3 class="featureTitle">Classroom Operations</h3>
+                <p class="featureDescription">
+                    Easily manage room allocations, assign lead teachers, and organize student enrollments.
+                </p>
+            </div>
+
+            <div class="featureCard">
+                <div class="featureIcon">📊</div>
+                <h3 class="featureTitle">Instant Report Cards</h3>
+                <p class="featureDescription">
+                    Input marks across terms and generate standardized, accurate performance reports effortlessly.
+                </p>
+            </div>
+
+            <div class="featureCard">
+                <div class="featureIcon">🛡️</div>
+                <h3 class="featureTitle">Strict Access Controls</h3>
+                <p class="featureDescription">
+                    Granular admin capabilities ensuring secure data privacy for students, staff, and grades.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTH-BASED QUICK PORTAL SECTION -->
+    @if (!isAuthenticated) {
+    <section class="portalSection">
+        <div class="portalCard">
+            <div class="portalText">
+                <h2>Ready to Access Your Portal?</h2>
+                <p>Sign in with your credentials to view your assigned dashboard and tools.</p>
+            </div>
+            <div class="portalAction">
+                <a routerLink="/login" class="lightBtn">
+                    Login In Now
+                </a>
+            </div>
+        </div>
+    </section>
+    }
+</div>

@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="header">
+        <span class="badge">System Admin</span>
+        <h1 class="title">Manage Classrooms</h1>
+    </div>
+
+    <div class="card">
+        <h2 class="subTitle">
+            {{ isEditing() ? 'Edit Classroom' : 'Create New Classroom' }}
+        </h2>
+
+        @if (message()) {
+        <div [class]="message()?.type === 'success' ? 'successAlert' : 'errorAlert'">
+            {{ message()?.text }}
+        </div>
+        }
+
+        <form (ngSubmit)="handleSubmit()" class="form">
+            <div class="formGroup">
+                <label class="label">Classroom Name</label>
+                <input type="text" class="input" placeholder="e.g., Grade 10 A, Maths 101" [(ngModel)]="classroomName"
+                    name="classroomName" required />
+            </div>
+
+            <div class="buttonGroup">
+                <button type="submit" [disabled]="submitting()" class="submitBtn">
+                    {{
+                    submitting()
+                    ? 'Saving...'
+                    : isEditing()
+                    ? 'Update Classroom'
+                    : 'Create Classroom'
+                    }}
+                </button>
+
+                @if (isEditing()) {
+                <button type="button" (click)="resetForm()" class="cancelBtn">
+                    Cancel
+                </button>
+                }
+            </div>
+        </form>
+    </div>
+
+    <div class="card" style="margin-top: 2rem;">
+        <h2 class="subTitle">Existing Classrooms</h2>
+
+        @if (loading()) {
+        <p>Loading classrooms...</p>
+        } @else if (classrooms().length === 0) {
+        <p class="stateCard">No classrooms created yet.</p>
+        } @else {
+        <div class="classList">
+            @for (cls of classrooms(); track cls.id) {
+            <div class="classItem">
+                <div>
+                    <h3 class="className">{{ cls.name }}</h3>
+                    <span class="classMeta">
+                        ID: {{ cls.id }} | Teacher Assigned:
+                        {{ cls.teacherId ? 'Yes' : 'No' }}
+                    </span>
+                </div>
+                <button (click)="handleEditClick(cls)" class="editBtn">
+                    Edit
+                </button>
+            </div>
+            }
+        </div>
+        }
+    </div>
+</div>

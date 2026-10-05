@@ -1,0 +1,61 @@
+<div class="container">
+    <!-- HERO / MISSION BANNER -->
+    <section class="heroBanner">
+        <span class="badge">About Academia School</span>
+        <h1 class="title">Nurturing Minds, Shaping Tomorrow</h1>
+        <p class="subtitle">
+            At Academia School, we combine academic rigor with modern digital management
+            to provide students, teachers, and administrators with an empowering learning environment.
+        </p>
+    </section>
+
+    <!-- SCHOOL OFFICIALS SECTION -->
+    <section class="section">
+        <div class="sectionHeader">
+            <h2 class="sectionTitle">School Administration & Officials</h2>
+            <p class="sectionSubtitle">
+                Meet the visionaries leading Academia School toward holistic educational standards.
+            </p>
+        </div>
+
+        <div class="grid">
+            @for (official of schoolOfficials; track official.id) {
+            <div class="card">
+                <div class="avatarWrapper">
+                    <img [src]="official.avatar" [alt]="official.name" class="avatar" />
+                </div>
+                <h3 class="memberName">{{ official.name }}</h3>
+                <span class="officialRole">{{ official.role }}</span>
+                <p class="memberBio">{{ official.bio }}</p>
+            </div>
+            }
+        </div>
+    </section>
+
+    <!-- TEACHERS SECTION -->
+    <section class="section">
+        <div class="sectionHeader">
+            <h2 class="sectionTitle">Faculty & Teaching Staff</h2>
+            <p class="sectionSubtitle">
+                Our dedicated educators inspiring curiosity and student success every day.
+            </p>
+        </div>
+
+        <div class="grid">
+            @for (teacher of teachers; track teacher.id) {
+            <div class="card">
+                <div class="avatarWrapper">
+                    <img [src]="teacher.avatar" [alt]="teacher.name" class="avatar" />
+                </div>
+                <h3 class="memberName">{{ teacher.name }}</h3>
+                <span class="teacherRole">{{ teacher.role }}</span>
+                @if (teacher.department) {
+                <span class="departmentTag">{{ teacher.department }}</span>
+                }
+                <p class="memberBio">{{ teacher.bio }}</p>
+            </div>
+            }
+        </div>
+    </section>
+
+</div>

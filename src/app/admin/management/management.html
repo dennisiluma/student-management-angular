@@ -1,0 +1,85 @@
+@if (loading()) {
+<div class="container">Loading administration tools...</div>
+} @else {
+<div class="container">
+    <div class="header">
+        <span class="badge">System Admin</span>
+        <h1 class="title">Classroom & User Assignments</h1>
+    </div>
+
+    <div class="tabs">
+        <button [class]="'tabBtn ' + (activeTab() === 'teacher' ? 'active' : '')" (click)="switchTab('teacher')">
+            Assign Teacher
+        </button>
+        <button [class]="'tabBtn ' + (activeTab() === 'student' ? 'active' : '')" (click)="switchTab('student')">
+            Assign Student
+        </button>
+    </div>
+
+    <div class="card">
+        @if (message()) {
+        <div [class]="message()?.type === 'success' ? 'successAlert' : 'errorAlert'">
+            {{ message()?.text }}
+        </div>
+        }
+
+        @if (activeTab() === 'teacher') {
+        <form (ngSubmit)="handleAssignTeacher()" class="form">
+            <div class="formGroup">
+                <label class="label">Select Classroom</label>
+                <select class="select" [(ngModel)]="selectedClassroom" name="selectedClassroom" required>
+                    @for (c of classrooms(); track c.id) {
+                    <option [ngValue]="c.id">
+                        {{ c.name }}
+                    </option>
+                    }
+                </select>
+            </div>
+
+            <div class="formGroup">
+                <label class="label">Select Teacher</label>
+                <select class="select" [(ngModel)]="selectedTeacher" name="selectedTeacher" required>
+                    @for (t of teachers(); track t.id) {
+                    <option [ngValue]="t.id">
+                        {{ t.firstName }} {{ t.lastName }} ({{ t.email }})
+                    </option>
+                    }
+                </select>
+            </div>
+
+            <button type="submit" [disabled]="submitting()" class="submitBtn">
+                {{ submitting() ? 'Assigning...' : 'Assign Managing Teacher' }}
+            </button>
+        </form>
+        } @else {
+        <form (ngSubmit)="handleAssignStudent()" class="form">
+            <div class="formGroup">
+                <label class="label">Select Target Classroom</label>
+                <select class="select" [(ngModel)]="selectedClassroom" name="selectedClassroom" required>
+                    @for (c of classrooms(); track c.id) {
+                    <option [ngValue]="c.id">
+                        {{ c.name }}
+                    </option>
+                    }
+                </select>
+            </div>
+
+            <div class="formGroup">
+                <label class="label">Select Student</label>
+                <select class="select" [(ngModel)]="selectedStudent" name="selectedStudent" required>
+                    @for (s of students(); track s.id) {
+                    <option [ngValue]="s.id">
+                        {{ s.firstName }} {{ s.lastName }} ({{ s.email }})
+                    </option>
+                    }
+                </select>
+            </div>
+
+            <button type="submit" [disabled]="submitting()" class="submitBtn">
+                {{ submitting() ? 'Enrolling...' : 'Enroll Student to Class' }}
+            </button>
+        </form>
+        }
+    </div>
+</div>
+}

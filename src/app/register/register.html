@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="card">
+
+        <div class="header">
+            <h2 class="title">Create Account</h2>
+            <p class="subtitle">Register as a student or teacher</p>
+        </div>
+
+
+        @if (error()) {
+        <div class="errorAlert">{{ error() }}</div>
+        }
+
+        <form (ngSubmit)="handleSubmit()" class="form">
+            <div class="field">
+                <label class="label">First Name</label>
+                <input type="text" [(ngModel)]="firstName" name="firstName" class="input" placeholder="Daniel"
+                    required />
+            </div>
+
+            <div class="field">
+                <label class="label">Last Name</label>
+                <input type="text" [(ngModel)]="lastName" name="lastName" class="input" placeholder="Dave" required />
+            </div>
+
+            <div class="field">
+                <label class="label">Email Address</label>
+                <input type="email" [(ngModel)]="email" name="email" class="input" placeholder="user@school.edu"
+                    required />
+            </div>
+
+            <div class="field">
+                <label class="label">Password</label>
+                <input type="password" [(ngModel)]="password" name="password" class="input" placeholder="••••••••"
+                    required />
+            </div>
+
+            <button type="submit" [disabled]="loading()" class="submitBtn">
+                {{ loading() ? 'Creating Account...' : 'Register Account' }}
+            </button>
+        </form>
+
+        <p class="footer">
+            Already registered?
+            <a routerLink="/login" class="link">
+                Sign In
+            </a>
+        </p>
+
+    </div>
+</div>

@@ -1,0 +1,75 @@
+@if (loading()) {
+<div class="container">Loading classroom data...</div>
+} @else {
+<div class="container">
+    <div class="header">
+        <span class="badge">Academic Records</span>
+        <h1 class="title">Create Student Report Card</h1>
+    </div>
+
+    <div class="card">
+        @if (message()) {
+        <div [class]="message()?.type === 'success' ? 'successAlert' : 'errorAlert'">
+            {{ message()?.text }}
+        </div>
+        }
+
+        <form (ngSubmit)="handleSubmit()" class="form">
+            <div class="formGroup">
+                <label class="label">Select Student</label>
+                <select class="select" [(ngModel)]="selectedStudentId" name="selectedStudentId" required>
+                    @for (s of students(); track s.id) {
+                    <option [ngValue]="s.id">
+                        {{ s.firstName }} {{ s.lastName }} ({{ s.email }})
+                    </option>
+                    }
+                </select>
+            </div>
+
+            <div class="rowGrid">
+                <div class="formGroup">
+                    <label class="label">Academic Term</label>
+                    <select class="select" [(ngModel)]="term" name="term">
+                        <option value="1st Term">1st Term</option>
+                        <option value="2nd Term">2nd Term</option>
+                        <option value="3rd Term">3rd Term</option>
+                    </select>
+                </div>
+
+                <div class="formGroup">
+                    <label class="label">Academic Year</label>
+                    <input type="text" class="input" [(ngModel)]="academicYear" name="academicYear" required />
+                </div>
+            </div>
+
+            <div class="sectionHeader">
+                <h3 class="subTitle">Subject Grades</h3>
+                <button type="button" (click)="addGradeRow()" class="addBtn">
+                    + Add Subject
+                </button>
+            </div>
+
+            @for (entry of gradeEntries(); track $index) {
+            <div class="gradeRow">
+                <input type="text" placeholder="Subject (e.g. Chemistry)" class="input" [(ngModel)]="entry.subject"
+                    [name]="'subject_' + $index" required />
+                <select class="select" [(ngModel)]="entry.grade" [name]="'grade_' + $index">
+                    @for (g of gradeOptions; track g) {
+                    <option [value]="g">{{ g }}</option>
+                    }
+                </select>
+                @if (gradeEntries().length > 1) {
+                <button type="button" (click)="removeGradeRow($index)" class="removeBtn">
+                    ✕
+                </button>
+                }
+            </div>
+            }
+
+            <button type="submit" [disabled]="submitting()" class="submitBtn">
+                {{ submitting() ? 'Publishing...' : 'Publish Report Card' }}
+            </button>
+        </form>
+    </div>
+</div>
+}

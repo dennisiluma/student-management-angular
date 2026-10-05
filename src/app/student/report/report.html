@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="header">
+        <div class="titleSection">
+            <span class="badge">Academic Transcripts</span>
+            <h1 class="title">My Report Cards</h1>
+        </div>
+
+        @if (reports().length > 0) {
+        <button (click)="handleDownloadAllPDF()" class="downloadAllBtn">
+            Download Full History PDF
+        </button>
+        }
+    </div>
+
+    @if (loading()) {
+    <div class="emptyState">Loading academic reports...</div>
+    }
+
+    @if (error()) {
+    <div class="emptyState">{{ error() }}</div>
+    }
+
+    @if (!loading() && !error() && reports().length === 0) {
+    <div class="emptyState">
+        No academic results found for your account yet.
+    </div>
+    }
+
+    @if (!loading() && !error() && reports().length > 0) {
+    <div class="grid">
+        @for (report of reports(); track report.id) {
+        <div
+            [class]="'reportCard ' + (printingTermId() !== null && printingTermId() !== report.id ? 'hideForPrint' : '')">
+            <div class="cardHeader">
+                <div class="headerMeta">
+                    <h2 class="termTitle">{{ report.term }}</h2>
+                    <span class="yearTag">
+                        Academic Year: {{ report.academicYear }}
+                    </span>
+                </div>
+
+                <button (click)="handleDownloadTermPDF(report.id)" class="termDownloadBtn">
+                    Download Term PDF
+                </button>
+            </div>
+
+            <div class="tableWrapper">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (gradeItem of report.grades | keyvalue; track gradeItem.key) {
+                        <tr>
+                            <td>{{ gradeItem.key }}</td>
+                            <td>
+                                <span class="gradeBadge">{{ gradeItem.value }}</span>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        }
+    </div>
+    }
+</div>

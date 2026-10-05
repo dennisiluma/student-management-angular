@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="header">
+        <span class="badge">Classroom Community</span>
+        <h1 class="title">My Classmates</h1>
+    </div>
+
+    @if (loading()) {
+    <div class="emptyState">Loading classmates...</div>
+    }
+
+    @if (error()) {
+    <div class="emptyState">{{ error() }}</div>
+    }
+
+    @if (!loading() && !error() && classmates().length === 0) {
+    <div class="emptyState">
+        No other students are currently assigned to your classroom.
+    </div>
+    }
+
+    @if (!loading() && !error() && classmates().length > 0) {
+    <div class="grid">
+        @for (student of classmates(); track student.id) {
+        <div class="card">
+            <div class="avatar">
+                {{ getInitials(student.firstName, student.lastName) }}
+            </div>
+            <div class="info">
+                <h3 class="name">
+                    {{
+                    student.firstName || student.lastName
+                    ? (student.firstName || '') + ' ' + (student.lastName || '')
+                    : 'Anonymous Student'
+                    }}
+                </h3>
+                <span class="email">{{ student.email }}</span>
+                @if (student.bio) {
+                <p class="bio">"{{ student.bio }}"</p>
+                }
+            </div>
+        </div>
+        }
+    </div>
+    }
+</div>

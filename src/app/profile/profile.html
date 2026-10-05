@@ -1,0 +1,98 @@
+@if (loading()) {
+<div class="container">Loading profile...</div>
+} @else {
+<div class="container">
+    <div class="header">
+        <span class="badge">Account Management</span>
+        <h1 class="title">User Profile</h1>
+    </div>
+
+    <div class="tabs">
+        <button [class]="'tabBtn ' + (activeTab() === 'profile' ? 'active' : '')" (click)="setActiveTab('profile')">
+            General Profile
+        </button>
+        <button [class]="'tabBtn ' + (activeTab() === 'password' ? 'active' : '')" (click)="setActiveTab('password')">
+            Security & Password
+        </button>
+    </div>
+
+    <div class="card">
+        @if (successMsg()) {
+        <div class="alertSuccess">{{ successMsg() }}</div>
+        }
+        @if (errorMsg()) {
+        <div class="alertError">{{ errorMsg() }}</div>
+        }
+
+        @if (activeTab() === 'profile') {
+        <form (ngSubmit)="handleProfileSubmit()" class="form">
+            <div class="formGrid">
+                <div class="field">
+                    <label class="label">Email Address</label>
+                    <input type="email" [value]="email()" disabled class="input readOnlyInput" />
+                </div>
+
+                <div class="field">
+                    <label class="label">System Role</label>
+                    <input type="text" [value]="role()" disabled class="input readOnlyInput" />
+                </div>
+
+                <div class="field">
+                    <label class="label">First Name</label>
+                    <input type="text" [(ngModel)]="firstName" name="firstName" placeholder="Enter first name"
+                        class="input" />
+                </div>
+
+                <div class="field">
+                    <label class="label">Last Name</label>
+                    <input type="text" [(ngModel)]="lastName" name="lastName" placeholder="Enter last name"
+                        class="input" />
+                </div>
+
+                <div class="field">
+                    <label class="label">Phone Number</label>
+                    <input type="tel" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="+1 (555) 000-0000"
+                        class="input" />
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Bio / Notes</label>
+                <textarea [(ngModel)]="bio" name="bio" placeholder="Write a short summary about yourself..."
+                    class="textarea"></textarea>
+            </div>
+
+            <button type="submit" [disabled]="submitting()" class="submitBtn">
+                {{ submitting() ? 'Saving...' : 'Save Profile' }}
+            </button>
+        </form>
+        } @else {
+        <form (ngSubmit)="handlePasswordSubmit()" class="form">
+            <div class="field">
+                <label class="label">Current Password</label>
+                <input type="password" required [(ngModel)]="currentPassword" name="currentPassword"
+                    placeholder="••••••••" class="input" />
+            </div>
+
+            <div class="formGrid">
+                <div class="field">
+                    <label class="label">New Password</label>
+                    <input type="password" required [(ngModel)]="newPassword" name="newPassword" placeholder="••••••••"
+                        class="input" />
+                </div>
+
+                <div class="field">
+                    <label class="label">Confirm New Password</label>
+                    <input type="password" required [(ngModel)]="confirmPassword" name="confirmPassword"
+                        placeholder="••••••••" class="input" />
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="submitting()" class="submitBtn">
+                {{ submitting() ? 'Updating...' : 'Update Password' }}
+            </button>
+        </form>
+        }
+    </div>
+</div>
+}

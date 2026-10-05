@@ -1,0 +1,68 @@
+.footer {
+    background-color: #044e3a;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.5rem 0;
+    margin-top: auto;
+    color: #a7f3d0;
+    font-size: 0.85rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brandName {
+    font-weight: 800;
+    color: #ffffff;
+    font-size: 0.95rem;
+}
+
+.divider {
+    color: #059669;
+}
+
+.tagline {
+    color: #6ee7b7;
+    font-size: 0.8rem;
+}
+
+.links {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.link {
+    color: #a7f3d0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+
+.link:hover {
+    color: #ffffff;
+}
+
+.copyright {
+    color: #6ee7b7;
+    font-size: 0.775rem;
+    opacity: 0.8;
+}
+
+@media (min-width: 640px) {
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

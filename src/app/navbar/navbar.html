@@ -1,0 +1,63 @@
+<header class="header">
+    <div class="container">
+        <a routerLink="/" class="brand">
+            <div class="brandIcon">U</div>
+            <span>Academia School</span>
+        </a>
+
+        <nav class="navLinks">
+            <a routerLink="/" routerLinkActive="activeNavItem" [routerLinkActiveOptions]="{ exact: true }"
+                class="navItem">
+                Home
+            </a>
+            <a routerLink="/about" routerLinkActive="activeNavItem" class="navItem">
+                About Us
+            </a>
+            <a routerLink="/timetable" routerLinkActive="activeNavItem" class="navItem">
+                Timetable
+            </a>
+
+            <!-- ROLE STUDENT LINKS -->
+            @if (isStudent) {
+            <a routerLink="/student/dashboard" routerLinkActive="activeNavItem" class="navItem">
+                Student Dashboard
+            </a>
+            }
+
+            <!-- ROLE DASHBOARD LINKS -->
+            @if (isTeacher) {
+            <a routerLink="/teacher/dashboard" routerLinkActive="activeNavItem" class="navItem">
+                Teacher Dashboard
+            </a>
+            }
+
+            @if (isAdmin) {
+            <a routerLink="/admin/dashboard" routerLinkActive="activeNavItem" class="navItem">
+                Admin Dashboard
+            </a>
+            }
+
+            <!-- PROFILE LINK FOR ALL AUTHENTICATED USERS -->
+            @if (isAuthenticated) {
+            <a routerLink="/profile" routerLinkActive="activeNavItem" class="navItem">
+                Profile
+            </a>
+            }
+        </nav>
+
+        <div class="authSection">
+            @if (isAuthenticated) {
+            <span class="roleBadge">{{ role?.toUpperCase() }}</span>
+            <button (click)="handleLogout()" class="logoutBtn">
+                <svg class="logoutIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                Log Out
+            </button>
+            } @else {
+            <a routerLink="/login" class="loginBtn">Login</a>
+            }
+        </div>
+    </div>
+</header>

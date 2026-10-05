@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="header">
+        <span class="badge">Teacher Workspace</span>
+        <h1 class="title">My Classroom Students</h1>
+    </div>
+
+    @if (loading()) {
+    <div class="stateCard">Loading students...</div>
+    }
+
+    @if (error()) {
+    <div class="errorAlert">{{ error() }}</div>
+    }
+
+    @if (!loading() && !error() && students().length === 0) {
+    <div class="stateCard">
+        No students currently assigned to your classroom.
+    </div>
+    }
+
+    @if (!loading() && !error() && students().length > 0) {
+    <div class="grid">
+        @for (student of students(); track student.id) {
+        <div class="studentCard">
+            <div class="studentAvatar">
+                {{ getAvatarInitial(student.firstName) }}
+            </div>
+            <div class="studentInfo">
+                <h2 class="studentName">
+                    {{ student.firstName || 'Unassigned' }}
+                    {{ student.lastName || 'Name' }}
+                </h2>
+                <p class="studentEmail">{{ student.email }}</p>
+                <p class="studentPhone">
+                    {{ student.phoneNumber || 'No phone linked' }}
+                </p>
+            </div>
+        </div>
+        }
+    </div>
+    }
+</div>

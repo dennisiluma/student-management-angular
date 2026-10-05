@@ -1,0 +1,401 @@
+.container {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+}
+
+/* --- Page Header Section --- */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.titleSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    color: #047857;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: var(--radius-full, 9999px);
+    margin-bottom: 0.5rem;
+    border: 1px solid #a7f3d0;
+    box-shadow: 0 1px 4px rgba(16, 185, 129, 0.06);
+}
+
+.title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #064e3b;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.downloadAllBtn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1rem;
+    background-color: #ffffff;
+    color: #047857;
+    border: 1.5px solid #a7f3d0;
+    border-radius: var(--radius-md, 8px);
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+    min-height: 44px;
+    /* Mobile touch target target size */
+    transition: all 0.2s ease;
+}
+
+.downloadAllBtn:active {
+    background-color: #ecfdf5;
+    transform: scale(0.98);
+}
+
+/* --- Report Cards Layout --- */
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.reportCard {
+    background: #ffffff;
+    border: 1px solid rgba(16, 185, 129, 0.18);
+    border-radius: var(--radius-lg, 12px);
+    padding: 1.25rem 1rem;
+    box-shadow: 0 4px 16px -2px rgba(6, 78, 59, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.reportCard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1.5px dashed #e2e8f0;
+}
+
+.headerMeta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    width: 100%;
+}
+
+.termTitle {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #064e3b;
+}
+
+.yearTag {
+    display: inline-block;
+    font-size: 0.775rem;
+    font-weight: 700;
+    color: #059669;
+    background-color: #f0fdf4;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full, 9999px);
+    border: 1px solid #bbf7d0;
+}
+
+.termDownloadBtn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md, 8px);
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border: none;
+    min-height: 44px;
+    /* Touch target */
+    transition: all 0.2s ease;
+}
+
+.termDownloadBtn:active {
+    background: linear-gradient(135deg, #047857 0%, #064e3b 100%);
+    transform: scale(0.98);
+}
+
+/* --- Results Data Table --- */
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid #f1f5f9;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+}
+
+.table th {
+    background-color: #064e3b;
+    color: #ffffff;
+    padding: 0.75rem 0.85rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.table td {
+    padding: 0.75rem 0.85rem;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #334155;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.gradeBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    padding: 0.25rem 0.5rem;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: #047857;
+    background-color: #ecfdf5;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid #a7f3d0;
+}
+
+/* --- Empty / Loading States --- */
+.emptyState {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #ffffff;
+    border: 2px dashed #cbd5e1;
+    border-radius: var(--radius-lg, 12px);
+    color: #64748b;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* ==========================================
+   TABLET RESPONSIVE BREAKPOINT (640px+)
+   ========================================== */
+
+@media (min-width: 640px) {
+    .container {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .titleSection {
+        width: auto;
+    }
+
+    .title {
+        font-size: 2.1rem;
+    }
+
+    .downloadAllBtn {
+        width: auto;
+        min-height: auto;
+    }
+
+    .downloadAllBtn:hover {
+        background-color: #ecfdf5;
+        border-color: #059669;
+        color: #064e3b;
+        transform: translateY(-2px);
+    }
+
+    .cardHeader {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .headerMeta {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        width: auto;
+    }
+
+    .termTitle {
+        font-size: 1.35rem;
+    }
+
+    .termDownloadBtn {
+        width: auto;
+        min-height: auto;
+    }
+
+    .termDownloadBtn:hover {
+        background: linear-gradient(135deg, #047857 0%, #064e3b 100%);
+        transform: translateY(-2px);
+    }
+
+    .reportCard {
+        padding: 1.75rem 1.5rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.85rem 1.1rem;
+        font-size: 0.925rem;
+    }
+}
+
+/* ==========================================
+   DESKTOP RESPONSIVE BREAKPOINT (1024px+)
+   ========================================== */
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 3.5rem 1.5rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .grid {
+        gap: 2.25rem;
+    }
+
+    .reportCard {
+        padding: 2.25rem;
+    }
+
+    .reportCard:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px -4px rgba(6, 78, 59, 0.12);
+        border-color: #6ee7b7;
+    }
+
+    .table tr:hover td {
+        background-color: #f8fafc;
+    }
+}
+
+/* ==========================================
+   CSS PRINT DIRECTIVES
+   ========================================== */
+
+@media print {
+    @page {
+        margin: 1.5cm;
+        size: A4 portrait;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 12pt;
+    }
+
+    button,
+    header,
+    footer,
+    .downloadAllBtn,
+    .termDownloadBtn,
+    .badge {
+        display: none !important;
+    }
+
+    .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .header {
+        border-bottom: 2px solid #000000 !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .title {
+        font-size: 2rem !important;
+        color: #000000 !important;
+    }
+
+    .reportCard {
+        box-shadow: none !important;
+        border: 1px solid #666666 !important;
+        padding: 1.5rem !important;
+        margin-bottom: 0 !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .reportCard::before {
+        display: none !important;
+    }
+
+    .reportCard.hideForPrint {
+        display: none !important;
+    }
+
+    .table th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border-bottom: 2px solid #000000 !important;
+    }
+
+    .table td {
+        border-bottom: 1px solid #e2e8f0 !important;
+        color: #000000 !important;
+    }
+
+    .gradeBadge {
+        border: 1px solid #000000 !important;
+        color: #000000 !important;
+        background: transparent !important;
+    }
+}
